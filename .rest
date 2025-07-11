@@ -1,1 +1,6 @@
 GET http://localhost:3000 HTTP/1.1
+
+### Get all contacts
+GET https://project1-lyqc.onrender.com/contacts
+### Get single contact
+GET https://project1-lyqc.onrender.com/contacts/68701a20df93226c182a4f58
