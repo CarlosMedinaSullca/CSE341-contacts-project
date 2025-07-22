@@ -1,5 +1,40 @@
-GET http://localhost:3000 HTTP/1.1
+// LOCAL HOST - Development
+### Get all contacts
+GET http://localhost:8080/contacts
 
+### Get a single contact by ID
+GET http://localhost:8080/contacts/687017f6df93226c182a4f56
+
+### Create a new contact
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+    "firstName": "Paulino",
+    "lastName": "Tordoya",
+    "email": "p.tordoya@gmail.com",
+    "favoriteColor": "Pink",
+    "birthday": "30/03/1990"
+}
+
+### Update a contact
+PUT http://localhost:8080/contacts/687fef38db0fe4043b9b39f9
+Content-Type: application/json
+
+{
+    "firstName": "Paulino",
+    "lastName": "Tordo",
+    "email": "p.tordoya@gmail.com",
+    "favoriteColor": "Pink",
+    "birthday": "30/03/1990"
+}
+
+### Delete a contact
+DELETE http://localhost:8080/contacts/687fef38db0fe4043b9b39f9
+
+
+
+// RENDER-PRODUCTION
 ### Get all contacts
 GET https://project1-lyqc.onrender.com/contacts
 ### Get single contact

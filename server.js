@@ -6,16 +6,29 @@
  * Require Statements
  *************************/
 const express = require('express');
-const mongodb = require('./data/database');
+const cors = require('cors');
+const mongodb = require('./models');
 const app = express();
-const contacts = require('./routes/contacts')
+const db = require('./models');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
 
+
+
+var corsOption = {
+    origin: "http://localhost:8081"
+};
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.use(cors(corsOption));
+
+// parse requests of content-type - application/json
+app.use(express.json());
 
 /* ***********************
  * Routes
  *************************/
 app.use("/", require("./routes"));
-app.use("/contacts", contacts);
 
 
 
@@ -25,13 +38,22 @@ app.use("/contacts", contacts);
  * Values from .env (environment) file
  *************************/
 
-const port = process.env.PORT || 3000;
-
-mongodb.initDb((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        app.listen(port, () => {console.log(`Running on port ${port}`)});
-    }
+db.mongoose.connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
+.then(() => {
+    console.log('Connected to the database!');
+})
+.catch((err) => {
+    console.log('Cannot connect to the database!', err);
+    process.exit();
+});
+
+
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}.`);
+});
 
