@@ -6,7 +6,7 @@ const doc = {
     description: 'Description'
   },
   host: 'project1-lyqc.onrender.com',
-  schemes: ['http' , 'https']
+  schemes: ['https']
 };
 
 const outputFile = './swagger-output.json';
