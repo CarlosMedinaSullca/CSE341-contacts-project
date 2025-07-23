@@ -78,7 +78,7 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
   //#swagger.tags=['Contacts']
     const id = req.params.id;
-    await Contact.findById({id})
+    await Contact.findById(id)
     .then((data) => {
         if(!data)
             res
