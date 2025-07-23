@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 
 
 var corsOption = {
-    origin: "http://localhost:8081"
+    origin: [ "https://project1-lyqc.onrender.com", "http://localhost:8080" ]
 };
 
 app.use(cors(corsOption));
