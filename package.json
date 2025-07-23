@@ -20,6 +20,7 @@
   "homepage": "https://github.com/CarlosMedinaSullca/contacts#readme",
   "description": "",
   "dependencies": {
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",

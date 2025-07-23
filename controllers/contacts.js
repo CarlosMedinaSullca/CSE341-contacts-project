@@ -1,10 +1,12 @@
 const db = require('../models');
+const { options } = require('../routes');
 
 const Contact = db.contacts;
 
 // Create and save a new contact
 
 const createContact = async (req, res) => {
+  //#swagger.tags=['Contacts']
     // Validate request
     if(!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.birthday) {
         res.status(400).send({ message: "Content can not be empty!"});
@@ -33,7 +35,9 @@ const createContact = async (req, res) => {
     await contact
     .save(contact)
     .then(data => {
-        res.send(data);
+        res.send({
+          message: "Contact was created successfully.",
+          contact: data});
     })
     .catch(err => {
         res.status(500).send({
@@ -47,6 +51,7 @@ const createContact = async (req, res) => {
 // Retrieve all contacts from the database.
 
 const getAll = async (req, res) => {
+  //#swagger.tags=['Contacts']
     await Contact.find(
         {},
         {
@@ -71,6 +76,7 @@ const getAll = async (req, res) => {
 // Retrieve a single contact with contact_id
 
 const getSingle = async (req, res) => {
+  //#swagger.tags=['Contacts']
     const contact_id = req.params.contact_id;
     await Contact.find({contact_id: contact_id})
     .then((data) => {
@@ -87,9 +93,8 @@ const getSingle = async (req, res) => {
     });
 };
 
-//Update a contact by the contact_id in the request
-
 const updateContact = async (req, res) => {
+  //#swagger.tags=['Contacts']
 if (!req.body) {
     return res.status(400).send({
       message: "Data to update can not be empty!"
@@ -97,8 +102,15 @@ if (!req.body) {
   }
 
   const id = req.params.id;
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday     
+  };
 
-  await Contact.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  await Contact.findByIdAndUpdate(id, req.body, { useFindAndModify: false }, contact )
     .then(data => {
       if (!data) {
         res.status(404).send({
@@ -116,6 +128,7 @@ if (!req.body) {
 // Delete a contact with the specified contact_id in the request
 
 const deleteContact = async (req, res) => {
+  //#swagger.tags=['Contacts']
     const id = req.params.id;
     
     await Contact.findByIdAndDelete(id)

@@ -1,18 +1,22 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
+    "title": "Contacts API",
     "description": "Description",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/": {
       "get": {
+        "tags": [
+          "Hello World"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -21,8 +25,21 @@
         }
       }
     },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/contacts/": {
       "post": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -63,6 +80,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -76,6 +96,9 @@
     },
     "/contacts/{id}": {
       "get": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -98,6 +121,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -105,6 +131,30 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -123,6 +173,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "parameters": [
           {

@@ -10,11 +10,11 @@ POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-    "firstName": "Paulino",
-    "lastName": "Tordoya",
-    "email": "p.tordoya@gmail.com",
+    "firstName": "Paul",
+    "lastName": "Tordo",
+    "email": "paul.tordo@gmail.com",
     "favoriteColor": "Pink",
-    "birthday": "30/03/1990"
+    "birthday": "30/03/1970"
 }
 
 ### Update a contact
