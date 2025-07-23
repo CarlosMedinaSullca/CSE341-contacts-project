@@ -77,18 +77,18 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   //#swagger.tags=['Contacts']
-    const contact_id = req.params.contact_id;
-    await Contact.find({contact_id: contact_id})
+    const id = req.params.id;
+    await Contact.findById({id})
     .then((data) => {
         if(!data)
             res
                .status(404)
-               .send({message: 'Not found contact with id' + contact_id });
-        else res.send(data[0]);
+               .send({message: 'Not found contact with id' + id });
+        else res.send(data);
     })
     .catch((err) => {
         res.status(500).send({
-            message: 'Error retrieving contact with contact_id ' + contact_id,
+            message: 'Error retrieving contact with contact_id ' + id,
         });
     });
 };
